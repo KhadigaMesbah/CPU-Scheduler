@@ -239,7 +239,7 @@ namespace Scheduler
 
                                 readyQ.Add(p);
 
-                                if (queue[i].getRT() == queue[i].getBurst()) { //y3ne lessa hatebda2
+                                if (queue[i].getRT() == queue[i].getBurst()) { 
                                     queue[i].setStart(t);
                                 }
                                 queue[i].setEnd(t + queue[i].getRT()); //updates end of original process
@@ -257,7 +257,7 @@ namespace Scheduler
                                 readyQ.Add(p);
 
                                 if (queue[i].getRT() == queue[i].getBurst())
-                                { //y3ne lessa hatebda2
+                                { 
                                     queue[i].setStart(t);
                                 }
                                 queue[i].setEnd(t + queue[i].getRT()); //updates end of original process
@@ -285,7 +285,7 @@ namespace Scheduler
                 list_Sort(queue, "sjf");
                 int t = 0;
                 List<Process> readyQ = new List<Process>();
-                //awel wa7da eshtaghalet heya awel process fel sorted
+                
                 int running_index = 0;
                 queue[running_index].setStart(0);
 
@@ -305,7 +305,7 @@ namespace Scheduler
                         p.setEnd(queue[running_index].getEnd());
 
                         readyQ.Add(p);
-                        //3ayez akhalli el running ay wa7da shaghala delwa2te , w hazabat law heya el 3ayzenha wala la2 fel for loop
+                     
                         for (int i = 0; i < queue.Count; i++) {
                             if (queue[i].getRT() != 0)
                             {
@@ -316,13 +316,9 @@ namespace Scheduler
                         }
                     }
                     for (int i = 0; i < queue.Count; i++) {
-                        //y3ne law feeh wa7da gatt at t(zay timer), wel burst bta3ha a2al mn el burst bta3 el running
+                        
                         if (queue[i].getArrival() <= t && queue[i].getRT() < queue[running_index].getRT() && queue[i].getRT() !=0 )
                         { 
-                            //3ayza awa2af el running
-                            //ha-set el end bta3ha == t
-                            //wa3mel process gdeeda leeha start w end zayaha
-                            //wa2ool en el running index = i
                             queue[running_index].setEnd(t);
 
                             if (queue[running_index].getEnd() != queue[running_index].getStart())
@@ -334,8 +330,6 @@ namespace Scheduler
 
                                 readyQ.Add(p);
                             }
-                                //2olt en el running now heya el process el 7a2a2et el condn.
-                                //w ha-set el start bta3ha b t
                                 running_index = i;
                                 queue[running_index].setStart(t);   
                         }
@@ -383,7 +377,7 @@ namespace Scheduler
                     }
                     for (int i = 0; i < queue.Count; i++)
                     {
-                        //y3ne law feeh wa7da gatt at t(zay timer), wel burst bta3ha a2al mn el burst bta3 el running
+                        
                         if (queue[i].getArrival() <= t && queue[i].getPriority() < queue[running_index].getPriority() && queue[i].getRT() != 0)
                         {
                             queue[running_index].setEnd(t);
